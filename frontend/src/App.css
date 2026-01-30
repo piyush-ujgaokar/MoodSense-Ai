@@ -1,0 +1,10 @@
+/* App layout helpers */
+.app-shell h3{ font-size:1.05rem }
+
+main{ display:block }
+
+button.icon-btn{ background:transparent; border:none; cursor:pointer; color:var(--text) }
+
+.muted{ color:var(--muted) }
+
+.playing{ box-shadow: 0 10px 30px rgba(99,102,241,0.08); border-left: 4px solid rgba(124,92,255,0.12); background: linear-gradient(180deg, color-mix(in srgb,var(--card) 98%, #0000), transparent); }

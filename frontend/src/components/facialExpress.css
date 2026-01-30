@@ -3,24 +3,40 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    border-radius: 20%;
     justify-content: flex-start;
-    padding: 4rem;
+    padding: 1.5rem 0;
 }
 
 .user-video-feed {
     width: 500px;
+    max-width: 100%;
     aspect-ratio: 16 / 9;
-    border-radius: 1.5rem;
+    border-radius: 12px;
     object-fit: cover;
+    border: 1px solid var(--glass-border);
 }
 
 .detect-btn{
-    padding: 15px 25px;
-    background-color: rgb(45, 42, 42);
+    padding: 12px 18px;
+    background: linear-gradient(90deg,var(--accent), color-mix(in srgb,var(--accent) 70%, var(--text)));
     color: white;
     border: none;
     font-size: 1rem;
     border-radius: 0.7rem;
     outline: none;
     cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.detect-btn:active{ transform: none }
+
+@media (max-width: 900px){
+    .mood-element{ flex-direction: column; gap:12px }
+    .user-video-feed{ width: 100%; border-radius: 10px }
+    .detect-btn{ width: 100%; }
+}
+
+@media (max-width: 480px){
+    .user-video-feed{ aspect-ratio: 4/3 }
 }

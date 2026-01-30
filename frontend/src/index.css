@@ -2,9 +2,65 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
+:root{
+  --bg: #ffffff;
+  --card: #f7f7f8;
+  --text: #111827;
+  --muted: #6b7280;
+  --accent: #6c5ce7;
+  --glass: rgba(255,255,255,0.6);
+  --shadow: 0 8px 24px rgba(16,24,40,0.08);
+  --radius: 14px;
+  --glass-border: rgba(16,24,40,0.04);
+}
+
+:root[data-theme='dark']{
+  --bg: #0b1020;
+  --card: #0f1724;
+  --text: #e6eef8;
+  --muted: #94a3b8;
+  --accent: #7c5cff;
+  --glass: rgba(9,12,20,0.5);
+  --shadow: 0 10px 30px rgba(2,6,23,0.6);
+  --radius: 14px;
+  --glass-border: rgba(255,255,255,0.04);
+}
+
 html,body, #root{
   height: 100%;
   width: 100%;
-  background-color: rgb(24, 24, 24);
+  background: linear-gradient(180deg,var(--bg), color-mix(in srgb, var(--bg) 95%, #0000 ));
+  color: var(--text);
+  transition: background-color 280ms ease, color 280ms ease;
+}
+
+.app-shell{
+  min-height:100vh;
+  display:flex;
+  gap: 24px;
+  padding: 28px;
+  align-items:flex-start;
+}
+
+.panel{
+  background: linear-gradient(180deg, var(--card), color-mix(in srgb,var(--card) 96%, #0000));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  border: 1px solid var(--glass-border);
+}
+
+.fade-in{animation: fadeIn 420ms ease both}
+@keyframes fadeIn{from{opacity:0; transform: translateY(6px)} to{opacity:1; transform: none}}
+
+@media (max-width: 900px){
+  .app-shell{ flex-direction: column; padding: 14px; gap:12px }
+  .app-shell > .panel{ width: 100% }
+  main{ width: 100% }
+}
+
+@media (max-width: 480px){
+  .app-shell{ padding: 10px }
 }
