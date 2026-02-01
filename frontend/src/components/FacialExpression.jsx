@@ -15,7 +15,7 @@ const FacialExpression = ({setSongs}) => {
      navigator.mediaDevices.getUserMedia({ video:true })
 
          .then((stream) => {
-             if (videoRef.current) videoRef.current.srcObject = stream
+             videoRef.current.srcObject = stream
          })
          .catch((err) => {
              console.error("Error accessing webcam: ", err);
@@ -32,6 +32,7 @@ const FacialExpression = ({setSongs}) => {
              if(!detections || detections.length === 0) {
                  console.log("No Face Detected");
                  return
+                 
              }
 
              for(const expression of Object.keys(detections[0].expressions)) {
@@ -41,10 +42,11 @@ const FacialExpression = ({setSongs}) => {
                  }
              }
 
-         try{
-           const response = await axios.get(`http://localhost:3000/songs?mood=${_expression}`)
-           setSongs(response.data.songs)
-         }catch(e){ console.error(e) }
+         axios.get(`http://localhost:3000/songs?mood=${_expression}`)
+         .then((response)=>{
+            console.log(response.data);
+            setSongs(response.data.songs)
+         })
       }  
     useEffect(() => {
 
@@ -52,13 +54,15 @@ const FacialExpression = ({setSongs}) => {
 
         },[])
 
+
+
   return (
-    <div className='mood-element' style={{display:'flex',gap:20,alignItems:'center'}}>
+    <div className='mood-element'>
        <video
         ref={videoRef}
         autoPlay
         muted
-        className='user-video-feed panel'
+        className='user-video-feed'
         />
 
     <button className='detect-btn' onClick={detectMood}>Detect Mood</button>

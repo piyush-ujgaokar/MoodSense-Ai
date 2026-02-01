@@ -7,11 +7,17 @@
     justify-content: flex-start;
     padding: 1.5rem 0;
 }
+.expression-canvas {
+  width: 50%;
+  height: 100%;
+  pointer-events: none;
+}
+
 
 .user-video-feed {
     width: 500px;
     max-width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 13 / 9;
     border-radius: 12px;
     object-fit: cover;
     border: 1px solid var(--glass-border);
